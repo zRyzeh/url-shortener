@@ -15,7 +15,8 @@ module.exports = {
       animation: {
         'neon-stroke': 'neon-stroke 15s linear infinite',
         'neon-stroke-reverse': 'neon-stroke-reverse 15s linear infinite',
-        'spin-slow': 'spin 20s linear infinite'
+        'spin-slow': 'spin 20s linear infinite',
+        'fade-in': 'fade-in 300ms ease'
       },
       keyframes: {
         'neon-stroke': {
@@ -26,6 +27,11 @@ module.exports = {
         'neon-stroke-reverse': {
           from: {
             strokeDashoffset: '0'
+          }
+        },
+        'fade-in': {
+          from: {
+            opacity: '0'
           }
         }
       },
