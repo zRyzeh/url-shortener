@@ -40,6 +40,9 @@ module.exports = {
       },
       dropShadow: {
         'neon': '0 0 4px #596A95',
+      },
+      transitionProperty: {
+        'top': 'top'
       }
     }
   },

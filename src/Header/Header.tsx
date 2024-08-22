@@ -6,10 +6,13 @@ import { Modal } from "../Modal/Modal"
 import { useModal } from "../common/hooks/useModal"
 import { ModalAuthentication } from "../Modal/ModalAuthentication"
 import { Authentication } from "../common/enums/Authentication"
+import { CloseIcon, MenuIcon } from "../assets/icons/Icons"
+import { useState } from "react"
 
 export function Header() {
   const [isOpenLogin, openLogin, closeLogin] = useModal(false)
   const [isOpenRegister, openRegister, closeRegister] = useModal(false)
+  const [isOpenMenu, setIsopenMenu] = useState(false)
 
   const handleChangeModal = (typeAuth: Authentication) => {
     let timer
@@ -21,6 +24,11 @@ export function Header() {
       timer = setTimeout(() => openLogin(), 300)
     }
     return () => clearTimeout(timer)
+  }
+
+  const handleToggleMenu = () => {
+    setIsopenMenu(!isOpenMenu)
+    console.log(isOpenMenu)
   }
 
   return (
@@ -41,18 +49,32 @@ export function Header() {
       <section className="h-14 lg:h-24 w-screen bg-primary dark:bg-primary-dark px-5 lg:px-10 lg:pt-5 flex justify-between items-center">
         <Logo text="URLshortener" />
         <div className="flex items-center gap-7">
-          <HeaderButton text="Login" onClick={() => openLogin()} />
-          <HeaderButton text="Register" onClick={() => openRegister()} />
+          <div className={`flex sm:gap-7 max-sm:absolute max-sm:flex-col left-0 transition-top duration-300 max-sm:w-screen max-sm:bg-primary max-sm:dark:bg-primary-dark max-sm:p-5 max-sm:z-[1000] ${isOpenMenu ? 'top-14' : '-top-32'}`}>
+            <HeaderButton text="Login" onClick={() => openLogin()} />
+            <HeaderButton text="Register" onClick={() => openRegister()} />
+          </div>
           <div className="flex gap-1">
             <LightDarkButton />
             <GitHubLink />
           </div>
+          <button
+            type="button"
+            aria-label="Toggle menu"
+            className="sm:hidden"
+            onClick={handleToggleMenu}
+          >
+            {
+              isOpenMenu
+                ? <CloseIcon className="h-7 w-7 dark:fill-secondary" />
+                : <MenuIcon className="dark:fill-secondary h-7 w-7" />
+            }
+          </button>
         </div>
       </section>
 
       <svg
         className="w-full h-auto"
-        viewBox="0 20 1440 40"
+        viewBox="0 22 1440 40"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path

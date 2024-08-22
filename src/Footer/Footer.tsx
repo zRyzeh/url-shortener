@@ -17,7 +17,7 @@ export function Footer() {
             40L1392,40C1344,40,1248,40,1152,40C1056,40,960,40,864,40C768,40,672,40,576,40C480,40,384,40,288,40C192,40,96,40,48,40L0,40Z"
         />
       </svg>
-      <section className="flex items-center justify-center w-screen h-28 bg-primary dark:bg-primary-dark">
+      <section className="flex items-center justify-center w-screen h-20 md:h-28 bg-primary dark:bg-primary-dark">
         <p className="text-primary-dark dark:text-primary">Created with React and TailwindCSS</p>
       </section>
     </footer>

@@ -93,3 +93,34 @@ export function UrlIcon({ className }: ClassName) {
     </svg>
   )
 }
+
+export function MenuIcon({ className }: ClassName) {
+  return (
+    <svg
+      className={className}
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M.5 7.42h15v1.25H.5zm0 3.6h15v1.25H.5zm0-7.29h15v1.25H.5z"
+      />
+    </svg>
+  )
+}
+
+export function ArrowIcon({ className }: ClassName) {
+  return (
+    <svg
+      className='w-10 h-5'
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 15 16"
+    >
+      <path
+        className={className}
+        d="M12.49 7.14L3.44 2.27c-.76-.41-1.64.3-1.4 1.13l1.24 4.34q.075.27 0 .54l-1.24 4.34c-.24.83.64 1.54 1.4 1.13l9.05-4.87a.98.98 0 0 0 0-1.72Z"
+      />
+    </svg>
+  )
+}
