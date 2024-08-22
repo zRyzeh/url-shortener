@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, Inter, Avenir, Helvetica, Arial, sans-serif;
-  min-height: 100vh;
+@layer utilities {
+  body {
+    @apply m-0 min-h-screen font-Roboto
+  }
+
+  ::-ms-reveal {
+    @apply dark:invert
+  }
 }

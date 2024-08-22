@@ -2,14 +2,34 @@ import { SocialButtons } from './SocialButtons'
 import { Authentication } from '../common/enums/Authentication'
 import { InputWithLabel } from '../common/components/InputWithLabel'
 
-export function ModalAuthentication({ typeAuthentication }: { typeAuthentication: Authentication }) {
-  const auth = typeAuthentication === Authentication.Login ? 'Login' : 'Register'
+const authTexts = {
+  login: {
+    auth: "Login",
+    question: "Don't have an account? ",
+    action: "Register"
+  },
+  register: {
+    auth: "Register",
+    question: "Already have an account? ",
+    action: "Login"
+  }
+}
+
+interface ModalAuthenticationProps {
+  typeAuthentication: Authentication,
+  onChange: () => void
+}
+
+export function ModalAuthentication({ typeAuthentication, onChange }: ModalAuthenticationProps) {
+  const { auth, question, action } = typeAuthentication === Authentication.Login
+    ? authTexts.login
+    : authTexts.register
 
   return (
     <form className="flex flex-col items-center gap-6">
       <h2 className="dark:text-secondary text-center text-4xl">{auth}</h2>
       {
-        typeAuthentication == Authentication.Register &&
+        typeAuthentication === Authentication.Register &&
         <InputWithLabel
           htmlFor='name'
           textLabel='Full name'
@@ -42,30 +62,30 @@ export function ModalAuthentication({ typeAuthentication }: { typeAuthentication
           required
         />
         {
-          typeAuthentication == Authentication.Login &&
-          <p className="text-secondary underline hover:text-tertiary cursor-pointer text-end">
+          typeAuthentication === Authentication.Login &&
+          <p className="dark:text-secondary underline hover:text-tertiary cursor-pointer text-end">
             Forgot your password?
           </p>
         }
       </div>
       <button
-        className="w-80 bg-tertiary p-2 rounded-full text-secondary drop-shadow-neon hover:drop-shadow-none active:scale-y-95"
+        className="w-80 bg-tertiary p-2 rounded-full text-secondary drop-shadow-neon hover:drop-shadow-none active:scale-y-95 transition"
         type="submit"
       >
         Enter
       </button>
       <div>
-        <p className="text-secondary">
-          {typeAuthentication === Authentication.Login ? "Don't have an account? " : 'Already have an account? '}
-          <span className="underline cursor-pointer hover:text-tertiary">
-            {auth}
+        <p className="dark:text-secondary">
+          {question}
+          <span className="underline cursor-pointer hover:text-tertiary" onClick={onChange} >
+            {action}
           </span>
         </p>
       </div>
       <div className="flex w-full items-center gap-2">
-        <div className="h-px w-full bg-slate-200"></div>
-        <span className="text-white text-sm">OR</span>
-        <div className="h-px w-full bg-slate-200"></div>
+        <div className="h-px w-full bg-secondary-dark dark:bg-slate-200"></div>
+        <span className="text-secondary-dark dark:text-secondary text-sm">OR</span>
+        <div className="h-px w-full bg-secondary-dark dark:bg-slate-200"></div>
       </div>
       <SocialButtons />
     </form>

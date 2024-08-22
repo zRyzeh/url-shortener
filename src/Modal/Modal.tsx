@@ -14,22 +14,26 @@ export function Modal({ isOpen, onClose, children }: ModalProps) {
 
   useEffect(() => {
     if (isOpen) {
-      setShowModal(true);
+      setShowModal(true)
     } else {
-      const timer = setTimeout(() => setShowModal(false), 300);
-      return () => clearTimeout(timer);
+      const timer = setTimeout(() => setShowModal(false), 300)
+      return () => clearTimeout(timer)
     }
-  }, [isOpen]);
+  }, [isOpen])
 
   if (!showModal || !mountElement) return
 
   return createPortal(
-    <div className="fixed inset-0 flex items-center justify-center z-[1000]">
+    <div
+      className="fixed inset-0 flex items-center justify-center z-[1000]"
+      aria-modal="true"
+      role="dialog"
+    >
       <div
         className={`absolute inset-0 bg-primary-dark dark:bg-primary transition-opacity duration-300 ${isOpen ? 'animate-fade-in opacity-20' : 'opacity-0'}`}
         onClick={onClose}
       ></div>
-      <div className={`relative p-24 rounded-2xl bg-secondary dark:bg-secondary-dark z-[1000] transition-opacity duration-300 ${isOpen ? 'animate-fade-in' : 'opacity-0'}`}>
+      <div className={`relative p-24 rounded-2xl bg-secondary dark:bg-secondary-dark z-[1000] transition-opacity duration-300 drop-shadow-neon ${isOpen ? 'animate-fade-in' : 'opacity-0'}`}>
         <button
           className="p-1 absolute top-4 right-4 active:scale-95"
           type="button"

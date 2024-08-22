@@ -4,6 +4,9 @@ module.exports = {
   content: ['./src/**/*.{html,js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        'Roboto': 'Roboto, Oxygen, Ubuntu, Cantarell, sans-serif, Inter, Avenir, Helvetica, Arial'
+      },
       colors: {
         'primary': '#EBECF0',
         'secondary': '#fff',

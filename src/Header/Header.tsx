@@ -11,13 +11,31 @@ export function Header() {
   const [isOpenLogin, openLogin, closeLogin] = useModal(false)
   const [isOpenRegister, openRegister, closeRegister] = useModal(false)
 
+  const handleChangeModal = (typeAuth: Authentication) => {
+    let timer
+    if (typeAuth === Authentication.Login) {
+      closeLogin()
+      timer = setTimeout(() => openRegister(), 300)
+    } else {
+      closeRegister()
+      timer = setTimeout(() => openLogin(), 300)
+    }
+    return () => clearTimeout(timer)
+  }
+
   return (
     <header>
-      <Modal isOpen={isOpenLogin} onClose={() => closeLogin()}>
-        <ModalAuthentication typeAuthentication={Authentication.Login} />
+      <Modal isOpen={isOpenLogin} onClose={closeLogin}>
+        <ModalAuthentication
+          typeAuthentication={Authentication.Login}
+          onChange={() => handleChangeModal(Authentication.Login)}
+        />
       </Modal>
-      <Modal isOpen={isOpenRegister} onClose={() => closeRegister()}>
-        <ModalAuthentication typeAuthentication={Authentication.Register} />
+      <Modal isOpen={isOpenRegister} onClose={closeRegister}>
+        <ModalAuthentication
+          typeAuthentication={Authentication.Register}
+          onChange={() => handleChangeModal(Authentication.Register)}
+        />
       </Modal>
 
       <section className="h-14 lg:h-24 w-screen bg-primary dark:bg-primary-dark px-5 lg:px-10 lg:pt-5 flex justify-between items-center">
