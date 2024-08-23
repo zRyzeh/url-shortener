@@ -1,4 +1,6 @@
-interface ClassName { className?: string }
+interface ClassName {
+  className?: string
+}
 
 export function GoogleIcon({ className }: ClassName) {
   return (

@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-type UseModalReturn = [boolean, () => void, () => void]
+type UseModalReturn = [
+  boolean,
+  () => void,
+  () => void
+]
 
 export function useModal(initialValue = false): UseModalReturn {
   const [isOpen, setIsOpen] = useState(initialValue)

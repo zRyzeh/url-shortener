@@ -1,4 +1,4 @@
-import { GithubIcon } from "../../assets/icons/Icons";
+import { GithubIcon } from "../../../assets/icons/Icons";
 
 export function GitHubLink() {
   return (

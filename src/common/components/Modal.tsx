@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { CloseIcon } from '../assets/icons/Icons';
+import { CloseIcon } from '../../assets/icons/Icons';
 
 interface ModalProps {
   isOpen: boolean;

@@ -1,35 +1,31 @@
-import { SocialButtons } from './SocialButtons'
-import { Authentication } from '../common/enums/Authentication'
+import { SocialButtons } from './components/SocialButtons'
 import { InputWithLabel } from '../common/components/InputWithLabel'
+import { Separator } from './components/Separator'
+import { useAuthContext } from './contexts/AuthContext'
 
 const authTexts = {
   login: {
-    auth: "Login",
     question: "Don't have an account? ",
     action: "Register"
   },
   register: {
-    auth: "Register",
     question: "Already have an account? ",
     action: "Login"
   }
 }
 
-interface ModalAuthenticationProps {
-  typeAuthentication: Authentication,
-  onChange: () => void
-}
+export function Auth() {
+  const { authType, toggleAuthType } = useAuthContext()
 
-export function ModalAuthentication({ typeAuthentication, onChange }: ModalAuthenticationProps) {
-  const { auth, question, action } = typeAuthentication === Authentication.Login
+  const { question, action } = authType === "Login"
     ? authTexts.login
     : authTexts.register
 
   return (
     <form className="flex flex-col items-center gap-6">
-      <h2 className="dark:text-secondary text-center text-4xl">{auth}</h2>
+      <h2 className="dark:text-secondary text-center text-4xl">{authType}</h2>
       {
-        typeAuthentication === Authentication.Register &&
+        authType === "Register" &&
         <InputWithLabel
           htmlFor='name'
           textLabel='Full name'
@@ -62,7 +58,7 @@ export function ModalAuthentication({ typeAuthentication, onChange }: ModalAuthe
           required
         />
         {
-          typeAuthentication === Authentication.Login &&
+          authType === "Login" &&
           <p className="dark:text-secondary underline hover:text-tertiary cursor-pointer text-end">
             Forgot your password?
           </p>
@@ -74,19 +70,13 @@ export function ModalAuthentication({ typeAuthentication, onChange }: ModalAuthe
       >
         Enter
       </button>
-      <div>
-        <p className="dark:text-secondary">
-          {question}
-          <span className="underline cursor-pointer hover:text-tertiary" onClick={onChange} >
-            {action}
-          </span>
-        </p>
-      </div>
-      <div className="flex w-full items-center gap-2">
-        <div className="h-px w-full bg-secondary-dark dark:bg-slate-200"></div>
-        <span className="text-secondary-dark dark:text-secondary text-sm">OR</span>
-        <div className="h-px w-full bg-secondary-dark dark:bg-slate-200"></div>
-      </div>
+      <p className="dark:text-secondary">
+        {question}
+        <span className="underline cursor-pointer hover:text-tertiary" onClick={toggleAuthType} >
+          {action}
+        </span>
+      </p>
+      <Separator text='OR' />
       <SocialButtons />
     </form>
   )
