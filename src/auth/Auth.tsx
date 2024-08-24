@@ -1,7 +1,7 @@
-import { SocialButtons } from './components/SocialButtons'
-import { InputWithLabel } from '../common/components/InputWithLabel'
-import { Separator } from './components/Separator'
-import { useAuthContext } from './contexts/AuthContext'
+import { Separator } from "@/auth/components/Separator"
+import { SocialButtons } from "@/auth/components/SocialButtons"
+import { useAuthContext } from "@/auth/contexts/AuthContext"
+import { InputWithLabel } from "@/common/components/InputWithLabel"
 
 const authTexts = {
   login: {

@@ -1,4 +1,4 @@
-import { UrlIcon } from "../../assets/icons/Icons";
+import { UrlIcon } from "@/assets/icons/Icons";
 
 export function Logo({ text }: { text: string }) {
   return (

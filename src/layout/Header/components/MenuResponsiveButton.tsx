@@ -1,5 +1,5 @@
-import { CloseIcon, MenuIcon } from "../../../assets/icons/Icons";
-import { useMenuContext } from "../contexts/MenuContext";
+import { CloseIcon, MenuIcon } from "@/assets/icons/Icons";
+import { useMenuContext } from "@/layout/Header/contexts/MenuContext";
 
 export function MenuResponsiveButton() {
   const { isOpenMenu, setIsOpenMenu } = useMenuContext()

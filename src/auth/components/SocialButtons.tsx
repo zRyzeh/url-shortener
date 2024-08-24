@@ -1,4 +1,4 @@
-import { GithubIcon, GoogleIcon } from "../../assets/icons/Icons";
+import { GithubIcon, GoogleIcon } from "@/assets/icons/Icons";
 
 export function SocialButtons() {
   return (

@@ -1,4 +1,4 @@
-import { ArrowIcon } from "../../assets/icons/Icons";
+import { ArrowIcon } from "@/assets/icons/Icons";
 
 export function UrlForm() {
   return (

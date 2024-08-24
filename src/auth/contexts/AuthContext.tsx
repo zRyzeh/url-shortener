@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react";
-import { useAuthModal } from "../hooks/useAuthModal";
-import { AuthType } from "../types/AuthType";
+import { useAuthModal } from "@/auth/hooks/useAuthModal";
+import { AuthType } from "@/auth/types/AuthType";
 
 interface AuthContextProviderProps {
   children: React.ReactNode

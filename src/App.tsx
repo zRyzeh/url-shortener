@@ -1,9 +1,9 @@
-import './styles/tailwind.css';
-import { Header } from './layout/Header/Header';
-import { Footer } from './layout/Footer/Footer';
-import { Home } from './home/Home';
-import { AuthContextProvider } from './auth/contexts/AuthContext';
-import { MenuContextProvider } from './layout/Header/contexts/MenuContext';
+import '@/styles/tailwind.css';
+import { AuthContextProvider } from '@/auth/contexts/AuthContext';
+import { Home } from '@/home/Home';
+import { Footer } from '@/layout/Footer/Footer';
+import { MenuContextProvider } from '@/layout/Header/contexts/MenuContext';
+import { Header } from '@/layout/Header/Header';
 
 const App = () => {
   return (

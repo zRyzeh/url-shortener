@@ -1,13 +1,13 @@
-import { Logo } from "../../common/components/Logo";
-import { HeaderButton } from "./components/HeaderButton";
-import { GitHubLink } from "./components/GitHubLink";
-import { LightDarkButton } from "./components/LightDarkButton";
-import { Modal } from "../../common/components/Modal";
-import { Auth } from "../../auth/Auth";
-import { MenuResponsiveButton } from "./components/MenuResponsiveButton";
-import { useAuthContext } from "../../auth/contexts/AuthContext";
-import { useMenuContext } from "./contexts/MenuContext";
-import { WaveBottomSVG } from "./components/WaveBottomSVG";
+import { Auth } from "@/auth/Auth"
+import { useAuthContext } from "@/auth/contexts/AuthContext"
+import { Logo } from "@/common/components/Logo"
+import { Modal } from "@/common/components/Modal"
+import { GitHubLink } from "@/layout/Header/components/GitHubLink"
+import { HeaderButton } from "@/layout/Header/components/HeaderButton"
+import { LightDarkButton } from "@/layout/Header/components/LightDarkButton"
+import { MenuResponsiveButton } from "@/layout/Header/components/MenuResponsiveButton"
+import { WaveBottomSVG } from "@/layout/Header/components/WaveBottomSVG"
+import { useMenuContext } from "@/layout/Header/contexts/MenuContext"
 
 export function Header() {
   const { isOpenModal, openSelectedModal, closeModal } = useAuthContext()
