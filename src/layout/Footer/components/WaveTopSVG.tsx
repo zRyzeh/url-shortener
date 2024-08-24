@@ -7,7 +7,7 @@ export function WaveTopSVG() {
     >
       <path
         className="stroke-tertiary dark:stroke-tertiary-dark stroke-[3] motion-safe:stroke-dasharray-1000 motion-safe:stroke-dashoffset-2000
-            motion-safe:animate-neon-stroke-reverse filter drop-shadow-neon fill-transparent"
+            motion-safe:animate-neon-stroke-reverse motion-safe:opacity-0 filter drop-shadow-neon fill-transparent"
         d="M0,5L48,11C96,17,192,27,288,29C384,31,480,26,576,18C672,10,768,-1,864,3C960,6,1056,19,1152,22C1248,26,1344,18,1392,11L1440,5"
       />
       <path

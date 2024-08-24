@@ -1,6 +1,6 @@
+import { AuthType } from "@/auth/types/AuthType";
+import { useModal } from "@/common/hooks/useModal";
 import { useState } from "react";
-import { useModal } from "../../common/hooks/useModal";
-import { AuthType } from "../types/AuthType";
 
 export function useAuthModal() {
   const [isOpenModal, openModal, closeModal] = useModal(false)

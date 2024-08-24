@@ -7,7 +7,7 @@ export function WaveBottomSVG() {
     >
       <path
         className="stroke-tertiary dark:stroke-tertiary-dark stroke-[3] motion-safe:stroke-dasharray-1000 motion-safe:stroke-dashoffset-2000
-            motion-safe:animate-neon-stroke filter drop-shadow-neon fill-transparent"
+            motion-safe:animate-neon-stroke motion-safe:opacity-0 filter drop-shadow-neon fill-transparent"
         d="M0,50L48,44C96,38,192,28,288,26C384,24,480,29,576,37C672,45,768,56,864,53C960,50,1056,37,1152,34C1248,30,1344,38,1392,44L1440,50"
       />
       <path

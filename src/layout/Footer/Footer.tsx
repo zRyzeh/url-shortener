@@ -1,4 +1,4 @@
-import { WaveTopSVG } from "./components/WaveTopSVG";
+import { WaveTopSVG } from "@/layout/Footer/components/WaveTopSVG";
 
 export function Footer() {
   return (

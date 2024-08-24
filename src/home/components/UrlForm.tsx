@@ -2,7 +2,7 @@ import { ArrowIcon } from "@/assets/icons/Icons";
 
 export function UrlForm() {
   return (
-    <form className='bg-secondary dark:bg-primary-dark drop-shadow-neon flex z-10 focus-within:border-primary-dark dark:focus-within:border-tertiary rounded-lg border-2 transition-colors duration-200 border-tertiary-dark'>
+    <form className='bg-secondary dark:bg-primary-dark drop-shadow-neon flex z-10 focus-within:border-primary-dark dark:focus-within:border-tertiary rounded-lg border-2 transition-colors duration-200 border-tertiary-dark motion-safe:animate-url-form motion-safe:opacity-0'>
       <input
         className="rounded-l-lg bg-transparent px-4 py-3 outline-none w-72 md:w-80 text-primary-dark dark:text-primary"
         name="text"

@@ -1,3 +1,5 @@
+const { transform } = require('typescript');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
@@ -16,10 +18,14 @@ module.exports = {
         'tertiary-dark': '#2B3040'
       },
       animation: {
-        'neon-stroke': 'neon-stroke 15s linear infinite',
-        'neon-stroke-reverse': 'neon-stroke-reverse 15s linear infinite',
+        'neon-stroke': 'neon-stroke 15s linear infinite, fade-in-to-max 3s ease 1s forwards',
+        'neon-stroke-reverse': 'neon-stroke-reverse 15s linear infinite, fade-in-to-max 3s ease 1s forwards',
         'spin-slow': 'spin 20s linear infinite',
-        'fade-in': 'fade-in 300ms ease'
+        'fade-in': 'fade-in 300ms ease',
+        'grow': 'grow 1s ease-in-out',
+        'background-spinner': 'grow 1s ease-in-out, spin 20s linear infinite 1s',
+        'title': 'fade-in-to-max 3s ease 1s forwards',
+        'url-form': 'fade-in-to-max 3s ease 1.5s forwards'
       },
       keyframes: {
         'neon-stroke': {
@@ -35,6 +41,22 @@ module.exports = {
         'fade-in': {
           from: {
             opacity: '0'
+          }
+        },
+        'fade-in-to-max': {
+          from: {
+            opacity: '0'
+          },
+          to: {
+            opacity: '1'
+          }
+        },
+        'grow': {
+          from: {
+            transform: 'scale(0)'
+          },
+          to: {
+            transform: 'scale(1)'
           }
         }
       },

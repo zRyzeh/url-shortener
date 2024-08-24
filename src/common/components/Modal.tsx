@@ -1,6 +1,6 @@
+import { CloseIcon } from '@/assets/icons/Icons';
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { CloseIcon } from '../../assets/icons/Icons';
 
 interface ModalProps {
   isOpen: boolean;
@@ -33,7 +33,7 @@ export function Modal({ isOpen, onClose, children }: ModalProps) {
         className={`absolute inset-0 bg-primary-dark dark:bg-primary transition-opacity duration-300 ${isOpen ? 'animate-fade-in opacity-20' : 'opacity-0'}`}
         onClick={onClose}
       ></div>
-      <div className={`relative px-4 py-8 sm:p-14 md:p-24 lg:p-5 xl:p-24 rounded-2xl bg-secondary dark:bg-secondary-dark z-[1000] transition-opacity duration-300 drop-shadow-neon ${isOpen ? 'animate-fade-in' : 'opacity-0'}`}>
+      <div className={`relative px-4 py-8 sm:p-14 md:p-24 rounded-2xl bg-secondary dark:bg-secondary-dark z-[1000] transition-opacity duration-300 drop-shadow-neon ${isOpen ? 'animate-fade-in' : 'opacity-0'}`}>
         <button
           className="p-1 absolute top-4 right-4 active:scale-95"
           type="button"
