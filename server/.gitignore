@@ -12,5 +12,11 @@ dist/
 !.vscode/extensions.json
 .idea
 
+# REST Client
+*.http
+
 # Environment variables
 .env
+
+# Prisma
+prisma/migrations/

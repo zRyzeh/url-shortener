@@ -13,10 +13,10 @@ model User {
   password  String
   name      String
   createdAt DateTime @default(now())
-  urls      URL[]
+  urls      Url[]
 }
 
-model URL {
+model Url {
   id        String   @id
   url       String
   user      User     @relation(fields: [userId], references: [id])
