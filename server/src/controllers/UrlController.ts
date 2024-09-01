@@ -1,29 +1,32 @@
-import { Request, Response } from "express"
+import { NextFunction, Request, Response } from "express"
 import { IUrlController } from "../interfaces/controllers/IUrlController"
 import { UrlModel } from "../Models/UrlModel"
 import { UserModel } from "../Models/UserModel"
+import { ConflictError, NotFoundError } from "../utils/errors"
+import { response } from "../utils/response"
 
 export class UrlController implements IUrlController {
-  getUrlById = (async (req: Request, res: Response) => {
+  getUrlById = (async (req: Request, res: Response, next: NextFunction) => {
     const { id } = req.params
 
     const url = await UrlModel.getUrlById({ id })
-    if (!url) return res.status(404).send({ error: 'Url dont exist' })
+    if (!url) return next(new NotFoundError("Url not found"))
 
-    return res.json(url)
+    return response(res, url)
   })
 
-  createUrl = (async (req: Request, res: Response) => {
+  createUrl = (async (req: Request, res: Response, next: NextFunction) => {
     const { url, userId } = req.body
 
     const userExist = await UserModel.getUserById({ id: userId })
-    if (!userExist) return res.status(400).send({ error: 'User dont exist' })
+    if (!userExist) return next(new NotFoundError('User not found'))
+
     if (!url || !userId) return res.sendStatus(403)
 
     const urlExist = await UserModel.findUserWithUrl({ userId, url })
-    if (urlExist) return res.status(400).send({ error: 'Url alredy exist' })
+    if (urlExist) return next(new ConflictError('Url alredy exist'))
 
     const newUrl = await UrlModel.createUrl({ userId, url })
-    return res.send(newUrl)
+    return response(res, newUrl)
   })
 }
