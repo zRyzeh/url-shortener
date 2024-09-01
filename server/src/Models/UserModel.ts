@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client"
 import { IUserModel } from "../interfaces/models/IUserModel"
+import { encryptPassword } from "../utils/encryptPassword"
 
 const prisma = new PrismaClient()
 
@@ -42,7 +43,7 @@ export const UserModel: IUserModel = class {
       data: {
         name,
         email,
-        password
+        password: await encryptPassword(password)
       }
     })
     return user

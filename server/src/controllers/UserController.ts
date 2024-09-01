@@ -7,7 +7,7 @@ export class UserController implements IUserController {
     const { email } = req.query;
     if (typeof email !== 'string' || !email) return res.status(400).send({ error: 'Email is required' })
 
-    const user = UserModel.getUserByEmail({ email })
+    const user = await UserModel.getUserByEmail({ email })
 
     if (!user) return res.status(404).send({ error: 'User does not exist' })
 

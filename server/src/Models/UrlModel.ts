@@ -16,7 +16,7 @@ export const UrlModel: IUrlModel = class {
   })
 
   static getUrlById = (async ({ id }: { id: string }) => {
-    const url = prisma.url.findUnique({
+    const url = await prisma.url.findUnique({
       where: {
         id
       }
