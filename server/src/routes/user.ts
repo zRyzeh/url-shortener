@@ -8,5 +8,6 @@ export const createUserRouter = () => {
 
   routerUser.get('/', catchAsync(userController.getUserByEmail))
   routerUser.post('/', catchAsync(userController.createUser))
+  routerUser.post('/login', catchAsync(userController.loginUser))
   return routerUser
 }

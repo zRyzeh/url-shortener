@@ -20,14 +20,14 @@ export class BadRequestError extends AppError {
   }
 }
 
-export class ConflictError extends AppError {
-  constructor(message = "Conflict") {
-    super(message, 409)
+export class Unauthorized extends AppError {
+  constructor(message = "Unauthorized") {
+    super(message, 401)
   }
 }
 
-export class ValidationError extends AppError {
-  constructor(message = "Validation Error") {
-    super(message, 400)
+export class ConflictError extends AppError {
+  constructor(message = "Conflict") {
+    super(message, 409)
   }
 }

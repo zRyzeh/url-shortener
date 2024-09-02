@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client"
 import { IUserModel } from "../interfaces/models/IUserModel"
-import { encryptPassword } from "../utils/encryptPassword"
+import { comparePassword, encryptPassword } from "../utils/encryptPassword"
 
 const prisma = new PrismaClient()
 
@@ -46,6 +46,16 @@ export const UserModel: IUserModel = class {
         password: await encryptPassword(password)
       }
     })
+    return user
+  })
+
+  static loginUser = (async ({ email, password }: { email: string, password: string }) => {
+    const user = await UserModel.getUserByEmail({ email })
+    if (!user) return null
+
+    const isLogin = await comparePassword(password, user.password)
+    if (!isLogin) return null
+
     return user
   })
 }

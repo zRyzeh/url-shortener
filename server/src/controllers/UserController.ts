@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { IUserController } from "../interfaces/controllers/IUserController";
 import { UserModel } from "../Models/UserModel";
-import { BadRequestError, ConflictError, NotFoundError } from "../utils/errors";
+import { BadRequestError, ConflictError, NotFoundError, Unauthorized } from "../utils/errors";
 import { response } from "../utils/response";
 
 export class UserController implements IUserController {
@@ -17,13 +17,26 @@ export class UserController implements IUserController {
 
   createUser = async (req: Request, res: Response, next: NextFunction) => {
     const { name, email, password } = req.body
-    const userExist = await UserModel.getUserByEmail({ email })
-
-    if (userExist) return next(new ConflictError('User alredy exist'))
     if (!name || !email || !password) return next(new BadRequestError('Name, email and password are required'))
+
+    const userExist = await UserModel.getUserByEmail({ email })
+    if (userExist) return next(new ConflictError('User alredy exist'))
 
     const newUser = await UserModel.createUser({ name, email, password })
 
     return response(res, newUser, 201, 'User created successfully')
+  }
+
+  loginUser = async (req: Request, res: Response, next: NextFunction) => {
+    const { email, password } = req.body
+    if (!email || !password) return next(new BadRequestError('Email and password are required'))
+
+    const userExist = await UserModel.getUserByEmail({ email })
+    if (!userExist) return next(new NotFoundError('User not found'))
+
+    const authenticatedUser = await UserModel.loginUser({ email, password })
+    if (!authenticatedUser) return next(new Unauthorized('Invalid credentials'))
+
+    return response(res, authenticatedUser, 201, 'User authenticated successfully')
   }
 }
