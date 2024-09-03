@@ -20,6 +20,12 @@ export class BadRequestError extends AppError {
   }
 }
 
+export class UnprocessableContent extends AppError {
+  constructor(message = "Unprocessable Content") {
+    super(message, 422)
+  }
+}
+
 export class Unauthorized extends AppError {
   constructor(message = "Unauthorized") {
     super(message, 401)

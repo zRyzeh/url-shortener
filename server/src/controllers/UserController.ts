@@ -1,13 +1,15 @@
 import { NextFunction, Request, Response } from "express";
 import { IUserController } from "../interfaces/controllers/IUserController";
 import { UserModel } from "../Models/UserModel";
-import { BadRequestError, ConflictError, NotFoundError, Unauthorized } from "../utils/errors";
+import { ConflictError, NotFoundError, Unauthorized, UnprocessableContent } from "../utils/errors";
 import { response } from "../utils/response";
+import { validateUser } from "../schemas/userSchema";
+import { ZodError } from "zod";
 
 export class UserController implements IUserController {
   getUserByEmail = async (req: Request, res: Response, next: NextFunction) => {
-    const { email } = req.query;
-    if (typeof email !== 'string' || !email) return next(new BadRequestError('Email is required'))
+    const { email } = req.query as { email: string }
+    // Validation is missing
 
     const user = await UserModel.getUserByEmail({ email })
     if (!user) return next(new NotFoundError('User not found'))
@@ -16,21 +18,26 @@ export class UserController implements IUserController {
   }
 
   createUser = async (req: Request, res: Response, next: NextFunction) => {
-    const { name, email, password } = req.body
-    if (!name || !email || !password) return next(new BadRequestError('Name, email and password are required'))
+    const validation = validateUser(req.body)
+
+    if (validation.error) {
+      const error = JSON.parse(validation.error.message) as Array<ZodError>
+      const errorMessage = error.map(obj => obj.message).join(', ')
+      return next(new UnprocessableContent(errorMessage))
+    }
+
+    const { name, email, password } = validation.data
 
     const userExist = await UserModel.getUserByEmail({ email })
     if (userExist) return next(new ConflictError('User alredy exist'))
 
     const newUser = await UserModel.createUser({ name, email, password })
-
     return response(res, newUser, 201, 'User created successfully')
   }
 
   loginUser = async (req: Request, res: Response, next: NextFunction) => {
-    const { email, password } = req.body
-    if (!email || !password) return next(new BadRequestError('Email and password are required'))
-
+    const { email, password } = req.body as { email: string, password: string }
+    // Validation is missing
     const userExist = await UserModel.getUserByEmail({ email })
     if (!userExist) return next(new NotFoundError('User not found'))
 

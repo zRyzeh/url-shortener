@@ -21,7 +21,6 @@ export const UrlModel: IUrlModel = class {
         id
       }
     })
-
     return url
   })
 }
