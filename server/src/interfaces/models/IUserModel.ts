@@ -1,4 +1,4 @@
-import { User } from "@prisma/client"
+import type { User } from "../../generated/prisma/client.js"
 
 export interface IUserModel {
   getUserById: (params: { id: string }) => Promise<User | null>

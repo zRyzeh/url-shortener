@@ -1,8 +1,6 @@
-import { PrismaClient } from "@prisma/client"
+import { prisma } from "../lib/prisma"
 import { IUserModel } from "../interfaces/models/IUserModel"
 import { comparePassword, encryptPassword } from "../utils/encryptPassword"
-
-const prisma = new PrismaClient()
 
 export const UserModel: IUserModel = class {
   static getUserById = (async ({ id }: { id: string }) => {

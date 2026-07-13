@@ -7,7 +7,7 @@ import { response } from "../utils/response"
 
 export class UrlController implements IUrlController {
   getUrlById = (async (req: Request, res: Response, next: NextFunction) => {
-    const { id } = req.params
+    const id = req.params.id as string
     if (!id) return next(new BadRequestError('ID is required'))
 
     const url = await UrlModel.getUrlById({ id })
