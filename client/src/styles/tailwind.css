@@ -1,13 +1,83 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer utilities {
-  body {
-    @apply m-0 min-h-screen font-Roboto
-  }
+@custom-variant dark (&:is(.dark *));
 
-  ::-ms-reveal {
-    @apply dark:invert
+@theme {
+  --font-roboto: "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif, "Inter", "Avenir",
+    "Helvetica", "Arial";
+
+  --color-primary: #ebecef;
+  --color-secondary: #fff;
+  --color-tertiary: #596a95;
+  --color-primary-dark: #13151a;
+  --color-secondary-dark: #1d1f26;
+  --color-tertiary-dark: #2b3040;
+
+  --animate-neon-stroke: neon-stroke 15s linear infinite, fade-in-to-max 3s ease 1s forwards;
+  --animate-neon-stroke-reverse: neon-stroke-reverse 15s linear infinite,
+    fade-in-to-max 3s ease 1s forwards;
+  --animate-spin-slow: spin 20s linear infinite;
+  --animate-fade-in: fade-in 300ms ease;
+  --animate-grow: grow 1s ease-in-out;
+  --animate-background-spinner: grow 1s ease-in-out, spin 20s linear infinite 1s;
+  --animate-title: fade-in-to-max 3s ease 1s forwards;
+  --animate-url-form: fade-in-to-max 3s ease 1.5s forwards;
+
+  --drop-shadow-neon: 0 0 4px #596a95;
+
+  --transition-top: top;
+}
+
+@keyframes neon-stroke {
+  to {
+    stroke-dashoffset: 0;
   }
+}
+
+@keyframes neon-stroke-reverse {
+  from {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in-to-max {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes grow {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@utility stroke-dasharray-1000 {
+  stroke-dasharray: 1000;
+}
+
+@utility stroke-dashoffset-2000 {
+  stroke-dashoffset: 2000;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-roboto);
+}
+
+::-ms-reveal {
+  filter: invert(1);
 }

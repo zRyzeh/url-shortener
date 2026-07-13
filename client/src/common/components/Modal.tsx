@@ -10,11 +10,12 @@ interface ModalProps {
 
 export function Modal({ isOpen, onClose, children }: ModalProps) {
   const mountElement = document.getElementById('modal')
-  const [showModal, setShowModal] = useState(isOpen)
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     if (isOpen) {
-      setShowModal(true)
+      const raf = requestAnimationFrame(() => setShowModal(true))
+      return () => cancelAnimationFrame(raf)
     } else {
       const timer = setTimeout(() => setShowModal(false), 300)
       return () => clearTimeout(timer)

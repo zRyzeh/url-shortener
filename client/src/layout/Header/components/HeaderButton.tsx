@@ -1,6 +1,6 @@
 interface ButtonProps {
   text: string,
-  onClick: Function
+  onClick: () => void
 }
 
 export function HeaderButton({ text, onClick }: ButtonProps) {
