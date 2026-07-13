@@ -20,7 +20,7 @@ services:
       dockerfile: Dockerfile.prod
     container_name: url-shortener-api
     environment:
-      DATABASE_URL: mysql://root:${MYSQL_ROOT_PASSWORD:-rootpassword}@mysql:3306/url_shortener
+      DATABASE_URL: mysql://root:${MYSQL_ROOT_PASSWORD:-rootpassword}@${MYSQL_HOST:-mysql}:${MYSQL_PORT:-3306}/${MYSQL_DATABASE:-url_shortener}
       PORT: 3000
     depends_on:
       mysql:
